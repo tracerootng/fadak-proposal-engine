@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-ng-dark: #063d1f;
+  --color-ng-emerald: #0f5c2e;
+  --color-ng-gold: #d4af37;
+  --color-ng-gold-muted: #bda062;
+  --color-ng-light: #f4faf6;
+}
+
+@layer utilities {
+  /* Hide scrollbars but keep functional */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom CSS for proper print layouts */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Hide all dashboard/UI elements except the A4 pages */
+  .print-hidden,
+  button,
+  nav,
+  input,
+  select,
+  textarea,
+  .sidebar,
+  .toolbar {
+    display: none !important;
+  }
+  
+  .print-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  
+  .print-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 20mm !important; /* Proper margin standard */
+    box-shadow: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    position: relative !important;
+    float: none !important;
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  .print-page-cover {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 15mm !important;
+    box-shadow: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    background: linear-gradient(135deg, #063d1f 0%, #0c2014 100%) !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
+
+/* Page break utilities and overrides for html2pdf client rendering outside media-print */
+.print-page, .print-page-cover {
+  page-break-after: always;
+  break-after: page;
+}
+
+/* Force PDF compiler rendering styles to prevent margins/shadows causing blank gaps */
+.is-generating-pdf {
+  transform: none !important;
+  gap: 0 !important;
+}
+
+.is-generating-pdf .print-page,
+.is-generating-pdf .print-page-cover {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transform: none !important;
+}
+
+/* Reset the zoom container during normal browser printing or dynamic generator */
+@media print {
+  .zoom-container {
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    --zoom-calc: 1 !important;
+  }
+}
+

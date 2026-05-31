@@ -1,0 +1,6 @@
+{
+  "name": "Fadak Proposal Studio",
+  "description": "Premium A4 proposal generator for Fadak Media Hub Nigeria Limited, featuring elegant Nigerian green styling, live interactive editing, and beautiful multi-page PDF exporting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
